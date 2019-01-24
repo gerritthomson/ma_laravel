@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Section;
 
 class SectionController extends Controller
 {
@@ -80,5 +81,15 @@ class SectionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function withSelects($id){
+        return Section::with('Selects')->find($id);
+    }
+    public function withSelectOptions($id){
+        return Section::with('Selects.options')->find($id);
+    }
+    public function withSections($id){
+        return Section::with('children.selects.options', 'selects.options')->find($id);
     }
 }

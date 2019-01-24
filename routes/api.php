@@ -16,3 +16,17 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::resources([
+    'videos' => 'VideoController',
+    'questions' => 'QuestionController',
+    'scenes' => 'SceneController',
+    'sections' => 'SectionController',
+    'options' => 'OptionController',
+    'answers' => 'AnswerController',
+    'submissions' => 'SubmissionController',
+    'sectionselects' => 'SectionselectController',
+    'selects' => 'SelectController',
+]);
+
+Route::get('/selectwithoptions/{selectid}', 'SelectController@withOptions');

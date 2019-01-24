@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Option;
+
 class OptionController extends Controller
 {
     /**
@@ -11,9 +13,13 @@ class OptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        if ($request->is('api/*') ){
+            return response()->json(Option::get());
+        }
+        return Option::get();
     }
 
     /**
@@ -43,9 +49,14 @@ class OptionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request,$id)
     {
         //
+        $option = Option::find($id);
+        if ($request->is('api/*') ){
+            return response()->json($option);
+        }
+        return $option;
     }
 
     /**

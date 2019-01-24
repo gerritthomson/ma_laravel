@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Question;
 
 class QuestionController extends Controller
 {
@@ -81,4 +82,9 @@ class QuestionController extends Controller
     {
         //
     }
+
+    public function withSections($id){
+        return Question::with('sections.children.selects.options', 'sections.selects.options')->find($id);
+    }
+
 }

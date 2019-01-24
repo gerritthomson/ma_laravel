@@ -48,9 +48,24 @@ class SelectController extends Controller
     public function show($id)
     {
         //
+        $select = Select::find($id);
+        return $select;
+    }
+
+    /**
+     * Display the specified select witho ptions.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function withOptions($id)
+    {
+        //
         $select = Select::with('options')->find($id);
         return $select;
     }
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -61,6 +76,8 @@ class SelectController extends Controller
     public function edit($id)
     {
         //
+        $select = Select::find($id);
+        return $select;
     }
 
     /**
@@ -73,6 +90,9 @@ class SelectController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $select = Select::find($id);
+        $select->update($request->all());
+        return $select;
     }
 
     /**
@@ -84,5 +104,8 @@ class SelectController extends Controller
     public function destroy($id)
     {
         //
+        Select::findOrFail($id)->delete();
+
+        return redirect('/');
     }
 }

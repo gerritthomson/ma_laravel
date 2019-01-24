@@ -11,6 +11,10 @@ class Scene extends Model
         return $this->hasOne("App\Video");
     }
     public function question(){
-        return $this->hasOne('App\Question');
+        return $this->belongsTo('App\Question');
+    }
+
+    public function sections(){
+        return $this->belongsToMany('App\Section');
     }
 }

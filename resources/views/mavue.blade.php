@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Movement Analysis , Vue method</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
@@ -63,6 +63,9 @@
                 margin-bottom: 30px;
             }
         </style>
+        <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}" defer></script>
+
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -77,21 +80,25 @@
                 </div>
             @endif
 
+                @extends('layouts.app')
 
+                @section('content')
+                    <example-component></example-component>
+                    more stuff in content seciion.
+                @endsection
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel, my new site.
+                    Movement Analysis using Vue.js
+                </div>
+                <div>
+                    A crud for each class and related data.<br>
+                    A way to view the 'scene'<br>
+                    A way to view results<br>
+                    Reports !!<br>
                 </div>
 
-                <div class="links">
-                    <table border="1">
-                        <tr><th>Title</th><th>Artist</th><th>Key</th></tr>
-                        @foreach ($songs as $song)
-                            <tr><td>{{$song->title}}</td><td>{{$song->artist}}</td><td>{{$song->key}}</td></tr>
-                        @endforeach
-                    </table>
-                </div>
+
             </div>
         </div>
     </body>

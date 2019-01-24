@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Scene;
+use App\Section;
+use App\Select;
+use App\Option;
+
 class SceneController extends Controller
 {
     /**
@@ -80,5 +85,13 @@ class SceneController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    // check of full set of relationships
+
+    public function fullScene($id){
+        $scene = Scene::with('question.sections.children.selects.options', 'question.sections.selects.options')->find($id);
+        return $scene;
     }
 }

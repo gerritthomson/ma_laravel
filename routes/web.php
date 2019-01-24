@@ -36,16 +36,23 @@ Route::post('/submit', function(Request $request){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/mavue', 'MaVueController@index')->name('mavue');
 
 Route::resources([
     'videos' => 'VideoController',
     'questions' => 'QuestionController',
     'scenes' => 'SceneController',
     'sections' => 'SectionController',
-    'options' => 'OptionsController',
+    'options' => 'OptionController',
     'answers' => 'AnswerController',
     'submissions' => 'SubmissionController',
     'sectionselects' => 'SectionselectController',
     'selects' => 'SelectController',
 ]);
+
+Route::get('/fullscene/{scene_id}', 'SceneController@fullScene');
+Route::get('/sectionwithselects/{section_id}', 'SectionController@withSelects');
+Route::get('/sectionwithselectoptions/{section_id}', 'SectionController@withSelectOptions');
+Route::get('/sectionwithsections/{section_id}', 'SectionController@withSections');
+Route::get('/questionwithsections/{question_id}', 'QuestionController@withSections');
+

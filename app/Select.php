@@ -3,10 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Option;
+use App\Option;
 
 class Select extends Model
 {
+    /**
+     * @var array
+     */
+    protected $fillable = ['label','value'];
     //
     public function options(){
         return $this->hasMany(Option::class);
