@@ -91,7 +91,13 @@ class SceneController extends Controller
     // check of full set of relationships
 
     public function fullScene($id){
-        $scene = Scene::with('question.sections.children.selects.options', 'question.sections.selects.options')->find($id);
+//        $scene = Scene::with('question.sections.children.selects.options', 'question.sections.selects.options')->find($id);
+        $scene = Scene::with('question.sections.children.selects.options')->find($id);
         return $scene;
     }
+	
+	public function viewScene($id){
+		$scene = $this->fullScene($id);
+		return view('scene.index', ['scene' => $scene] );
+	}
 }

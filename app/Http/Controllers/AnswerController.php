@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Answer;
+use App\Scene;
 
 class AnswerController extends Controller
 {
@@ -81,4 +83,20 @@ class AnswerController extends Controller
     {
         //
     }
+    public function fullScene($id){
+//        $scene = Scene::with('question.sections.children.selects.options', 'question.sections.selects.options')->find($id);
+        $scene = Scene::with('question.sections.children.selects.options')->find($id);
+        return $scene;
+    }
+
+    public function viewAnswer($id){
+        $answer = Answer::with('scene','options')->find($id);
+        $optionValues = [];
+        foreach($answer->options as $option){
+            $optionValues[$option->id] = $option->pivot->value;
+        }
+        $scene = $this->fullScene($answer->scene->id);
+        return view('answer.index', ['answer'=>$answer, 'scene' => $scene, 'optionValues'=>$optionValues] );
+    }
+
 }

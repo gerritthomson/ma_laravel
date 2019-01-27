@@ -12,6 +12,10 @@ class Option extends Model
     }
 
     public function submissions(){
-        return $this->belongsToMany('App\Submission', 'submission_option')->withTimestamps();
+        return $this->belongsToMany('App\Submission', 'submission_option');
+    }
+
+    public function answers(){
+        return $this->belongsToMany('App\Submission', 'answeroptions');
     }
 }

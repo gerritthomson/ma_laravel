@@ -13,9 +13,9 @@
 use Illuminate\Http\Request;
 
 Route::get('/', function () {
-    $songs = \App\Song::all();
+    $scenes = \App\Scene::all();
 
-    return view('welcome',['songs'=>$songs]);
+    return view('welcome',['scenes'=>$scenes]);
 });
 
 Route::get('/submit', function(){
@@ -51,6 +51,10 @@ Route::resources([
 ]);
 
 Route::get('/fullscene/{scene_id}', 'SceneController@fullScene');
+Route::get('/viewscene/{scene_id}', 'SceneController@viewScene');
+Route::get('/viewanswer/{answer_id}', 'AnswerController@viewAnswer');
+
+
 Route::get('/sectionwithselects/{section_id}', 'SectionController@withSelects');
 Route::get('/sectionwithselectoptions/{section_id}', 'SectionController@withSelectOptions');
 Route::get('/sectionwithsections/{section_id}', 'SectionController@withSections');

@@ -86,9 +86,9 @@
 
                 <div class="links">
                     <table border="1">
-                        <tr><th>Title</th><th>Artist</th><th>Key</th></tr>
-                        @foreach ($songs as $song)
-                            <tr><td>{{$song->title}}</td><td>{{$song->artist}}</td><td>{{$song->key}}</td></tr>
+                        <tr><th>Description</th><th>link</th></tr>
+                        @foreach ($scenes as $scene)
+                            <tr><td>{{$scene->description}}</td><td><a href='/viewscene/{{$scene->id}}'>{{$scene->description}}</a></td></tr>
                         @endforeach
                     </table>
                 </div>

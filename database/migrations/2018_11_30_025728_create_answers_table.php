@@ -15,11 +15,9 @@ class CreateAnswersTable extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('question_id')->unsigned();
-            $table->integer('select_id')->unsigned();
+            $table->integer('scene_id')->unsigned();
             $table->integer('option_id')->unsigned();
-            $table->foreign('question_id')->references('id')->on('questions');
-            $table->foreign('select_id')->references('id')->on('selects');
+            $table->foreign('scene_id')->references('id')->on('questions');
             $table->foreign('option_id')->references('id')->on('options');
             $table->timestamps();
         });
