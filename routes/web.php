@@ -53,6 +53,9 @@ Route::resources([
 Route::get('/fullscene/{scene_id}', 'SceneController@fullScene');
 Route::get('/viewscene/{scene_id}', 'SceneController@viewScene');
 Route::get('/viewanswer/{answer_id}', 'AnswerController@viewAnswer');
+Route::get('/createanswer/{scene_id}', 'AnswerController@create');
+Route::post('/createanswer/{scene_id}', 'AnswerController@store');
+Route::put('/answers/{answer_id}/edit', 'AnswerController@update');
 
 
 Route::get('/sectionwithselects/{section_id}', 'SectionController@withSelects');

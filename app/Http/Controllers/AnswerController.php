@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Answer;
 use App\Scene;
+use App\Option;
 
 class AnswerController extends Controller
 {
@@ -23,9 +24,10 @@ class AnswerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($scene_id)
     {
-        //
+        $scene = $this->fullScene($scene_id);
+        return view('answer.create', ['scene' => $scene] );
     }
 
     /**
@@ -36,7 +38,28 @@ class AnswerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $sceneId = $request->input('scene_id');
+        $scene = Scene::find($sceneId);
+        $optionIds = $request->input('option');
+        $optionsToAttach = [];
+        foreach($optionIds as $key=>$value){
+            if ( intval($value) != 0){
+                $optionsToAttach[$key] = ['value'=>$value];
+            }
+        }
+        var_dump($sceneId);
+        var_dump($optionIds);
+        $answer = new Answer();
+        $answer->created_by = 'gjt';
+        $answer->scene()->associate($scene);
+        $answer->save();
+        $answer->options()->attach($optionsToAttach);
+        var_dump($answer);
+        return redirect()->action(
+            'AnswerController@edit', ['id' => $answer->id]
+        );
+        exit();
+        return $this->create($request['scene_id']);
     }
 
     /**
@@ -58,7 +81,13 @@ class AnswerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $answer = Answer::with('scene','options')->find($id);
+        $optionValues = [];
+        foreach($answer->options as $option){
+            $optionValues[$option->id] = $option->pivot->value;
+        }
+        $scene = $this->fullScene($answer->scene->id);
+        return view('answer.edit', ['answer'=>$answer, 'scene' => $scene, 'optionValues'=>$optionValues] );
     }
 
     /**
@@ -71,6 +100,25 @@ class AnswerController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $answer = Answer::find($id);
+        var_dump($request);
+        $optionIds = $request->input('option');
+        var_dump($optionIds);
+        $optionsToAttach = [];
+        foreach($optionIds as $key=>$value){
+            if ( intval($value) != 0){
+                $optionsToAttach[$key] = ['value'=>$value];
+            }
+        }
+        var_dump($optionsToAttach);
+//        exit();
+        // sync the options of the answers. This removes missing and adds new.
+        $answer->options()->sync($optionsToAttach);
+        var_dump($answer);
+        return redirect()->action(
+            'AnswerController@edit', ['id' => $answer->id]
+        );
+        exit();
     }
 
     /**
