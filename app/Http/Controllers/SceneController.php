@@ -8,6 +8,8 @@ use App\Scene;
 use App\Section;
 use App\Select;
 use App\Option;
+use App\Video;
+use App\Question;
 
 class SceneController extends Controller
 {
@@ -28,6 +30,9 @@ class SceneController extends Controller
      */
     public function create()
     {
+        $videos = Video::All();
+        $questions = Question::All();
+        return view('scene.create',['videos'=>$videos, 'questions'=>$questions]);
         //
     }
 
@@ -40,6 +45,22 @@ class SceneController extends Controller
     public function store(Request $request)
     {
         //
+        if ($request->video = ''){
+            // invalid
+        }
+        if($request->question == ''){
+            // invalid
+        }
+        if (strlen($request->description) ==0){
+            // invalid
+        }
+        $scene = new Scene();
+        $scene->description = $request->description;
+        $scene->video_id = $request->video;
+        $scene->question_id = $request->question;
+        $scene->save();
+        return redirect('\\');
+
     }
 
     /**
@@ -92,7 +113,7 @@ class SceneController extends Controller
 
     public function fullScene($id){
 //        $scene = Scene::with('question.sections.children.selects.options', 'question.sections.selects.options')->find($id);
-        $scene = Scene::with('question.sections.children.selects.options')->find($id);
+        $scene = Scene::with('question.sections.children.selects.options', 'answers')->find($id);
         return $scene;
     }
 	

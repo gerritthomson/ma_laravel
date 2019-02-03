@@ -14,8 +14,17 @@ use Illuminate\Http\Request;
 
 Route::get('/', function () {
     $scenes = \App\Scene::all();
-
-    return view('welcome',['scenes'=>$scenes]);
+    $sceneIds = [];
+    foreach($scenes as $scene){
+        $sceneIds[] = $scene->id;
+    }
+//    var_dump($sceneIds);
+    $scenes = \App\Scene::with('answers','submissions')->find($sceneIds);
+//    var_dump($scenes);
+    //exit;
+    $questions = \App\Question::all();
+    $selects = \App\Select::All();
+    return view('welcome',['scenes'=>$scenes,'questions'=>$questions,'selects'=>$selects]);
 });
 
 Route::get('/submit', function(){
@@ -63,3 +72,11 @@ Route::get('/sectionwithselectoptions/{section_id}', 'SectionController@withSele
 Route::get('/sectionwithsections/{section_id}', 'SectionController@withSections');
 Route::get('/questionwithsections/{question_id}', 'QuestionController@withSections');
 
+Route::get('/selecteditwithoptions/{select_id}', 'SelectController@editWithOptions');
+Route::put('/selecteditwithoptions/{select_id}', 'SelectController@updateWithOptions');
+
+Route::get('/createselect/', 'SelectController@create');
+Route::post('/createselect/', 'SelectController@store');
+
+Route::get('/createscene/', 'SceneController@create');
+Route::post('/createscene/', 'SceneController@store');

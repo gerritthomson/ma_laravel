@@ -30,5 +30,8 @@
 			@endforeach
 			<hr>
 		@endforeach
-	
+
+	@foreach($scene->answers as $answer){
+		By {{$answer}}
+	@endforeach
 @endsection

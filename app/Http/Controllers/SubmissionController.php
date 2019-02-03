@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Submission;
+use App\Scene;
+use App\Option;
+use App\Http\Controllers\SceneController;
 
 class SubmissionController extends Controller
 {
@@ -46,6 +50,30 @@ class SubmissionController extends Controller
     public function show($id)
     {
         //
+        $submission = Submission::with('options','scene')->find($id);
+        $optionIds = [];
+        foreach($submission->options as $option){
+            $optionIds[] = $option->id;
+        }
+        $sceneController =  new SceneController();
+        $scene =  $sceneController->fullScene($submission->scene->id);
+        $answers = $scene->answers;
+        $answerOptionValues = [];
+        $score = [];
+        foreach($answers as $answer){
+            $options = $answer->options;
+            foreach($options as $option){
+                $answerOptionValues[$answer->id][$option->id] = $option->pivot->value;
+                if (in_array($option->id, $optionIds)){
+                    if (! isset($score[$answer->id])){
+                        $score[$answer->id] = 0;
+                    }
+                    $score[$answer->id] += intval($option->pivot->value);
+                }
+            }
+        }
+		return view('submission.show', ['submission'=>$submission,'scene' => $scene, 'optionIds'=>$optionIds,'answerOptionValues'=>$answerOptionValues, 'answers'=>$answers, 'score'=>$score] );
+
     }
 
     /**

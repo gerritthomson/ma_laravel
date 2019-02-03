@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Answer;
 
 class Scene extends Model
 {
@@ -16,5 +17,13 @@ class Scene extends Model
 
     public function sections(){
         return $this->belongsToMany('App\Section');
+    }
+
+    public function answers(){
+        return $this->hasMany('App\Answer');
+    }
+
+    public function submissions(){
+        return $this->hasMany('App\Submission');
     }
 }
