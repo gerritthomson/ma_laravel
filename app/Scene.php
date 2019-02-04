@@ -9,7 +9,7 @@ class Scene extends Model
 {
     //
     public function video(){
-        return $this->hasOne("App\Video");
+        return $this->belongsTo("App\Video");
     }
     public function question(){
         return $this->belongsTo('App\Question');

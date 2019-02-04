@@ -80,3 +80,6 @@ Route::post('/createselect/', 'SelectController@store');
 
 Route::get('/createscene/', 'SceneController@create');
 Route::post('/createscene/', 'SceneController@store');
+
+Route::get('/questionedit/{question_id}', 'QuestionController@edit');
+Route::post('/questionedit/{question_id}', 'QuestionController@update');
