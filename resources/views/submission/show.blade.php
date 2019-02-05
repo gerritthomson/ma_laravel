@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+	View the video:<br>
+	<iframe width="720" height="480" src="{{$scene->video->location}}?rel=0&amp;showinfo=0" frameborder="0" allow="accelerometer; encrypted-media; gyroscope" allowfullscreen></iframe>
+	<hr>
     <!-- Create Task Form... -->
 	{{$scene->description}}<br>
 		Question description::{{$scene->question->description}}<br>

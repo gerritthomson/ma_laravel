@@ -25,9 +25,12 @@ class SubmissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($scene_id)
     {
         //
+        $sceneController = new SceneController();
+        $scene = $sceneController->fullScene($scene_id);
+        return view('submission.create',['scene'=>$scene]);
     }
 
     /**
@@ -38,7 +41,32 @@ class SubmissionController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->all();
         //
+        $scene = Scene::find($request->scene_id);
+        $user = Auth::user();
+        $submission = new Submission();
+        $submission->user_id = $user->id;
+        $submission->scene_id = $scene->id;
+        $submission->save();
+        $optionsToAttach = [];
+        unset($data['scene_id']);
+        unset($data['_token']);
+        foreach($data as $key=>$value){
+            if ( is_array($value)){
+                $optionsToAttach = array_merge($optionsToAttach, $value);
+                continue;
+            }
+            $optionsToAttach[] = $value;
+        }
+        var_dump($optionsToAttach);
+//        exit();
+        // sync the options of the answers. This removes missing and adds new.
+        $submission->options()->sync($optionsToAttach);
+        return redirect()->action(
+            'SubmissionController@show', ['id' => $submission->id]
+        );
+
     }
 
     /**

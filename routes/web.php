@@ -18,13 +18,7 @@ Route::get('/', function () {
     foreach($scenes as $scene){
         $sceneIds[] = $scene->id;
     }
-//    var_dump($sceneIds);
-    $scenes = \App\Scene::with('answers','submissions')->find($sceneIds);
-//    var_dump($scenes);
-    //exit;
-    $questions = \App\Question::all();
-    $selects = \App\Select::All();
-    return view('welcome',['scenes'=>$scenes,'questions'=>$questions,'selects'=>$selects]);
+    return view('welcome',['scenes'=>$scenes]);
 });
 
 Route::get('/submit', function(){
@@ -86,3 +80,6 @@ Route::post('/questionedit/{question_id}', 'QuestionController@update');
 
 Route::get('/questioncreate', 'QuestionController@create');
 Route::post('/questioncreate', 'QuestionController@store');
+
+Route::get('/doscene/{scene_id}', 'SubmissionController@create');
+Route::post('/doscene/{scene_id}', 'SubmissionController@store');
