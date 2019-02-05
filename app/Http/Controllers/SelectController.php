@@ -83,10 +83,10 @@ class SelectController extends Controller
 
     public function updateWithOptions(Request $request, $id){
         $select = $this->withOptions($id);
-        var_dump($request);
+//        var_dump($request);
 //        exit;
         $optionIds = $request->input('option');
-        var_dump($optionIds);
+//        var_dump($optionIds);
         $optionsToAttach = [];
         foreach($select->options as $option){
             if ( array_key_exists($option->id, $optionIds)){
