@@ -83,3 +83,6 @@ Route::post('/createscene/', 'SceneController@store');
 
 Route::get('/questionedit/{question_id}', 'QuestionController@edit');
 Route::post('/questionedit/{question_id}', 'QuestionController@update');
+
+Route::get('/questioncreate', 'QuestionController@create');
+Route::post('/questioncreate', 'QuestionController@store');

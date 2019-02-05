@@ -27,6 +27,7 @@ class QuestionController extends Controller
     public function create()
     {
         //
+        return view('question.create');
     }
 
     /**
@@ -38,6 +39,17 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         //
+        if(strlen($request->description)==0){
+            return redirect()->action(
+                'HomeController@index'
+            );
+        }
+        $question = new Question();
+        $question->description = $request->description;
+        $question->save();
+        return redirect()->action(
+            'QuestionController@edit', ['id' => $question->id]
+        );
     }
 
     /**
@@ -97,7 +109,6 @@ class QuestionController extends Controller
     public function update(Request $request, $id)
     {
         //
-        var_dump($request);
         $destSection = null;
         $selectToUse = null;
         if($request->destSection != null){

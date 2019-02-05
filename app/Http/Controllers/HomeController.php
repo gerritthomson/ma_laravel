@@ -23,6 +23,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $scenes = \App\Scene::all();
+        $sceneIds = [];
+        foreach($scenes as $scene){
+            $sceneIds[] = $scene->id;
+        }
+//    var_dump($sceneIds);
+        $scenes = \App\Scene::with('answers','submissions')->find($sceneIds);
+//    var_dump($scenes);
+        //exit;
+        $questions = \App\Question::all();
+        $selects = \App\Select::All();
+        return view('home',['scenes'=>$scenes,'questions'=>$questions,'selects'=>$selects]);
+
+//        return view('home');
     }
 }
