@@ -37,6 +37,8 @@
 			@endforeach
 			<hr>
 		@endforeach
+			<textarea name="discussion">{{$answer->discussion}}</textarea>
+
 			<input type="submit" value="Update">
 
 		</form>

@@ -51,6 +51,8 @@ class AnswerController extends Controller
         var_dump($optionIds);
         $answer = new Answer();
         $answer->created_by = 'gjt';
+        $answer->discussion = $request->discussion;
+        $answer->save();
         $answer->scene()->associate($scene);
         $answer->save();
         $answer->options()->attach($optionsToAttach);
@@ -101,6 +103,8 @@ class AnswerController extends Controller
     {
         //
         $answer = Answer::find($id);
+        $answer->discussion = $request->discussion;
+        $answer->save();
         var_dump($request);
         $optionIds = $request->input('option');
         var_dump($optionIds);

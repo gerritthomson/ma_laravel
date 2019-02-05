@@ -7,6 +7,7 @@ use App\Submission;
 use App\Scene;
 use App\Option;
 use App\Http\Controllers\SceneController;
+use Illuminate\Support\Facades\Auth;
 
 class SubmissionController extends Controller
 {
@@ -45,8 +46,10 @@ class SubmissionController extends Controller
         //
         $scene = Scene::find($request->scene_id);
         $user = Auth::user();
+        var_dump($user);
+//        exit;
         $submission = new Submission();
-        $submission->user_id = $user->id;
+        $submission->user_id = Auth::id();
         $submission->scene_id = $scene->id;
         $submission->save();
         $optionsToAttach = [];

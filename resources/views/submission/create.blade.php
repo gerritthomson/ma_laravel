@@ -16,7 +16,7 @@
 			{{$select->name}}<select name='{{$select->name}}<?php echo ($select->allowsMultiple == 1?'[]':'');?>' <?php echo ($select->allowsMultiple == 1?'multiple="multiple"':'');?>>
 				<option value=''>choose</option>
 			   @foreach($select->options as $option)
-			      <option value='{{$option->value}}'>{{$option->label}}</option>
+			      <option value='{{$option->id}}'>{{$option->label}}</option>
 			   @endforeach
 			</select>
 			@endforeach
@@ -27,7 +27,7 @@
 				<li>{{$select->name}}<select name='{{$select->name}}'>
 					<option>choose</option>
 				   @foreach($select->options as $option)
-					  <option value='{{$option->value}}'>{{$option->label}}</option>
+					  <option value='{{$option->id}}'>{{$option->label}}</option>
 				   @endforeach
 				</select>
 				</li>

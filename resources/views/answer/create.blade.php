@@ -36,6 +36,7 @@
 			@endforeach
 			<hr>
 		@endforeach
+			<textarea name="discussion"></textarea>
 			<input type="submit" value="Create new">
 		</form>
 	
