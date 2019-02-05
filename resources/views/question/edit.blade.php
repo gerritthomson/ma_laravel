@@ -20,7 +20,7 @@
                                             <h1>{{$section->name}}</h1> {{$section->description}}
                                             <hr>
                                             @foreach($section->selects as $select)
-                                                <b>remove:<input type="checkbox" name="removeSelect[{{$select->id}}]"
+                                                <b>remove:<input type="checkbox" name="removeSelect[{{$section->id}}][{{$select->id}}]"
                                                                  value="yes"></b>
                                                 {{$select->name}}
                                                 <select name='{{$select->name}}' <?php echo($select->allowsMultiple == 1 ? 'multiple="multiple"' : '');?> >

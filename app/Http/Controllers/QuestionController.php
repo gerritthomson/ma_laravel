@@ -137,6 +137,17 @@ class QuestionController extends Controller
                 $section->save();
             }
         }
+        if(!empty($request->removeSelect)){
+            foreach($request->removeSelect as $section_id=>$selects){
+                $section = Section::find($section_id);
+                foreach($selects as $select_id=>$value){
+                   if($value == 'yes'){
+                       $select = Select::find($select_id);
+                       $section->selects()->detach($select);
+                   }
+                }
+            }
+        }
         return redirect()->action(
             'QuestionController@edit', ['id' => $id]
         );
