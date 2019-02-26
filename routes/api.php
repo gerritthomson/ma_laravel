@@ -30,3 +30,5 @@ Route::resources([
 ]);
 
 Route::get('/selectwithoptions/{selectid}', 'SelectController@withOptions');
+Route::get('/answerwithscene/{answerid}', 'AnswerController@answerWithScene');
+Route::get('/scenefull/{scenerid}', 'SceneController@fullScene');

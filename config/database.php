@@ -13,8 +13,8 @@ return [
     |
     */
 
-//    'default' => env('DB_CONNECTION', 'mysql'),
-    'default' => env('DB_CONNECTION', 'sqlite'),
+    'default' => env('DB_CONNECTION', 'mysql'),
+//    'default' => env('DB_CONNECTION', 'sqlite'),
 
     'testing' => [
         'driver' => 'sqlite',
@@ -52,12 +52,12 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', '127.0.0.1'),
+            'host' => env('DB_HOST', 'localhost'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
+            'database' => env('DB_DATABASE', 'map1'),
             'username' => env('DB_USERNAME', 'root'),
-            'password' => env('DB_PASSWORD', ''),
-            'unix_socket' => env('DB_SOCKET', ''),
+            'password' => env('DB_PASSWORD', 'g3rr1t'),
+            'unix_socket' => env('DB_SOCKET', '/cloudsql/my-ma-practice:australia-southeast1:my-ma-mysql'),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',

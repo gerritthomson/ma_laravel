@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSubmissionOptionsTable extends Migration
+class CreateAnswerOptionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateSubmissionOptionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('submission_options', function (Blueprint $table) {
-            $table->integer('submission_id')->unsigned();
+        Schema::create('answer_options', function (Blueprint $table) {
+            $table->integer('answer_id')->unsigned();
             $table->integer('option_id')->unsigned();
-            $table->timestamps();
-            $table->foreign('submission_id')->references('id')->on('submissions');
+            $table->integer('value');
+            $table->foreign('answer_id')->references('id')->on('answers');
             $table->foreign('option_id')->references('id')->on('options');
         });
     }
@@ -29,6 +29,6 @@ class CreateSubmissionOptionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('submission_options');
+        Schema::dropIfExists('answer_options');
     }
 }

@@ -33,6 +33,13 @@ return [
     */
 
     'channels' => [
+        // Add the following lines to integrate with Stackdriver:
+        'stackdriver' => [
+            'driver' => 'custom',
+            'via' => App\Logging\CreateStackdriverLogger::class,
+            'level' => 'debug',
+        ],
+
         'stack' => [
             'driver' => 'stack',
             'channels' => ['single'],

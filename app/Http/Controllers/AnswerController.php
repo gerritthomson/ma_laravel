@@ -17,6 +17,8 @@ class AnswerController extends Controller
     public function index()
     {
         //
+        $answers = Answer::All();
+        return $answers;
     }
 
     /**
@@ -50,6 +52,7 @@ class AnswerController extends Controller
         var_dump($sceneId);
         var_dump($optionIds);
         $answer = new Answer();
+        $answer->scene_id = $sceneId;
         $answer->created_by = 'gjt';
         $answer->discussion = $request->discussion;
         $answer->save();
@@ -141,6 +144,16 @@ class AnswerController extends Controller
         return $scene;
     }
 
+    public function answerWithScene($id){
+        $answer = Answer::with('scene','options')->find($id);
+        $optionValues = [];
+        foreach($answer->options as $option){
+            $optionValues[$option->id] = $option->pivot->value;
+        }
+        $scene = $this->fullScene($answer->scene->id);
+        return  ['answer'=>$answer, 'scene' => $scene, 'optionValues'=>$optionValues] ;
+
+    }
     public function viewAnswer($id){
         $answer = Answer::with('scene','options')->find($id);
         $optionValues = [];

@@ -17,12 +17,9 @@ class CreateSubmissionsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('question_id')->unsigned();
-            $table->integer('select_id')->unsigned();
-            $table->integer('option_id')->unsigned();
+            $table->integer('scene_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('question_id')->references('id')->on('questions');
-            $table->foreign('select_id')->references('id')->on('selects');
-            $table->foreign('option_id')->references('id')->on('options');
+            $table->foreign('scene_id')->references('id')->on('scenes');
             $table->timestamps();
         });
     }

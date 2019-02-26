@@ -20,9 +20,10 @@
 
                             <div class="links">
                                 <table border="1">
-                                    <tr><th>Scene Description</th><th>Preview Scene</th><th>Answers</th><th>Submission Count</th></tr>
+                                    <tr><th>Scene Description</th><th>Preview Scene</th><th>Do Scene</th><th>Answers</th><th>Submission Count</th></tr>
                                     @foreach ($scenes as $scene)
                                         <tr><td>{{$scene->description}}</td><td><a href='/viewscene/{{$scene->id}}'>{{$scene->description}}</a></td>
+                                            <td><a href='/doscene/{{$scene->id}}'>{{$scene->description}}</a></td>
                                             <td>
                                                 <table>
                                                     @foreach( $scene->answers as $answer)

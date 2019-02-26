@@ -19,6 +19,8 @@ class CreateSectionsTable extends Migration
             $table->string('description');
             $table->integer('question_id')->unsigned();
             $table->foreign('question_id')->references('id')->on('questions');
+            $table->integer('parent_id')->unsigned();
+            $table->foreign('parent_id')->references('id')->on('sections');
             $table->timestamps();
         });
     }

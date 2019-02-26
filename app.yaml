@@ -1,0 +1,14 @@
+runtime: php72
+
+env_variables:
+  ## Put production environment variables here.
+  APP_KEY: base64:5bK0CJSSkWe/TAAAySaeqCRGNrOczwnI2bqDbc7LsG0=
+  APP_STORAGE: /tmp
+  VIEW_COMPILED_PATH: /tmp
+  LOG_CHANNEL: stackdriver
+  DB_DATABASE: map1
+  DB_USERNAME: root
+  DB_PASSWORD: g3rr1t
+  DB_SOCKET: "/cloudsql/my-ma-practice:australia-southeast1:my-ma-mysql"
+  CACHE_DRIVER: database
+  SESSION_DRIVER: database
