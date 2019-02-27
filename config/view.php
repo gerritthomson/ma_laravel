@@ -1,4 +1,5 @@
 <?php
+$result = mkdir(storage_path('framework/views'), 0777, true);
 
 return [
 
@@ -28,6 +29,7 @@ return [
     |
     */
 
-    'compiled' => realpath(storage_path('framework/views')),
+//    'compiled' => realpath(storage_path('framework/views')),
+    'compiled' => storage_path('framework/views'),
 
 ];

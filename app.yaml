@@ -12,3 +12,13 @@ env_variables:
   DB_SOCKET: "/cloudsql/my-ma-practice:australia-southeast1:my-ma-mysql"
   CACHE_DRIVER: database
   SESSION_DRIVER: database
+
+handlers:
+- url: /js
+  static_dir: public/js
+
+- url: /css
+  static_dir: public/css
+
+- url: .*
+  script: auto
