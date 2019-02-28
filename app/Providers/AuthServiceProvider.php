@@ -46,6 +46,20 @@ class AuthServiceProvider extends ServiceProvider
             }
             return false;
         });
+
+        $gate->define('edit-scene', function ($user){
+            if($user->email == 'gerrit.thomson@gmail.com') {
+                return true;
+            }
+            return false;
+        });
+
+        $gate->define('create-scene', function ($user){
+            if($user->email == 'gerrit.thomson@gmail.com') {
+                return true;
+            }
+            return false;
+        });
         //
     }
 }

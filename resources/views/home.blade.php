@@ -27,7 +27,11 @@
                                         <th>Submission Count</th></tr>
                                     @foreach ($scenes as $scene)
                                         <tr>
-                                            <td><a href='/doscene/{{$scene->id}}'>{{$scene->description}}</a></td>
+                                            <td><a href='/doscene/{{$scene->id}}'>{{$scene->description}}</a>
+                                                @can('edit-scene')
+                                                    <a href='/editscene/{{$scene->id}}'>[!]</a>
+                                                @endcan
+                                            </td>
                                             @can('manage-answers')
                                                 <td>
                                                     <table>
@@ -45,6 +49,11 @@
                                             <td>{{$scene->submissions->count()}}</td>
                                         </tr>
                                     @endforeach
+                                    @can('create-scene')
+                                        <tr><td colspan="5">
+                                               <a href='/createscene/'>New Scene</a>
+                                            </td></tr>
+                                        @endcan
                                 </table>
                             </div>
                          @can('manage-question-formats')

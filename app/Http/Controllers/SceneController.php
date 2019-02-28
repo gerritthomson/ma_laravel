@@ -45,7 +45,7 @@ class SceneController extends Controller
     public function store(Request $request)
     {
         //
-        if ($request->video = ''){
+        if ($request->video == ''){
             // invalid
         }
         if($request->question == ''){
@@ -59,7 +59,9 @@ class SceneController extends Controller
         $scene->video_id = $request->video;
         $scene->question_id = $request->question;
         $scene->save();
-        return redirect('\\');
+        return redirect()->action(
+            'SceneController@edit', ['id' => $scene->id]
+        );
 
     }
 
@@ -83,6 +85,10 @@ class SceneController extends Controller
     public function edit($id)
     {
         //
+        $scene = Scene::with('video', 'question')->find($id);
+        $videos = Video::All();
+        $questions = Question::All();
+        return view('scene.edit',['scene'=>$scene,'videos'=>$videos, 'questions'=>$questions]);
     }
 
     /**
@@ -95,6 +101,15 @@ class SceneController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $scene = Scene::find($id);
+        $scene->video_id = $request->video;
+        $scene->description = $request->description;
+        $scene->question_id = $request->question;
+        $scene->save();
+        return redirect()->action(
+            'SceneController@edit', ['id' => $id]
+        );
+
     }
 
     /**
