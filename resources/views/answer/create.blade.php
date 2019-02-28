@@ -2,6 +2,9 @@
 
 @section('content')
 	<h2>Sceneid:{{$scene->id}}</h2>
+	View the video:<br>
+	<iframe width="720" height="480" src="{{$scene->video->location}}?rel=0&amp;showinfo=0" frameborder="0" allow="accelerometer; encrypted-media; gyroscope" allowfullscreen></iframe>
+	<hr>
     <!-- Create Task Form... -->
 	Create an Answer data set for this scene.
 	{{$scene->description}}<br>

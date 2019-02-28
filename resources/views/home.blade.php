@@ -20,27 +20,34 @@
 
                             <div class="links">
                                 <table border="1">
-                                    <tr><th>Scene Description</th><th>Preview Scene</th><th>Do Scene</th><th>Answers</th><th>Submission Count</th></tr>
+                                    <tr><th>Do Scene</th>
+                                        @can('manage-answers')
+                                          <th>Answers</th>
+                                        @endcan
+                                        <th>Submission Count</th></tr>
                                     @foreach ($scenes as $scene)
-                                        <tr><td>{{$scene->description}}</td><td><a href='/viewscene/{{$scene->id}}'>{{$scene->description}}</a></td>
+                                        <tr>
                                             <td><a href='/doscene/{{$scene->id}}'>{{$scene->description}}</a></td>
-                                            <td>
-                                                <table>
-                                                    @foreach( $scene->answers as $answer)
+                                            @can('manage-answers')
+                                                <td>
+                                                    <table>
+                                                        @foreach( $scene->answers as $answer)
+                                                            <tr><td>
+                                                                    <a href="/answers/{{$answer->id}}/edit">{{$answer->created_by}} :: {{$answer->created_at}}</a>
+                                                                </td></tr>
+                                                        @endforeach
                                                         <tr><td>
-                                                                <a href="/answers/{{$answer->id}}/edit">{{$answer->created_by}} :: {{$answer->created_at}}</a>
+                                                                <a href="/createanswer/{{$scene->id}}">New</a>
                                                             </td></tr>
-                                                    @endforeach
-                                                    <tr><td>
-                                                            <a href="/createanswer/{{$scene->id}}">New</a>
-                                                        </td></tr>
-                                                </table>
-                                            </td>
+                                                    </table>
+                                                </td>
+                                            @endcan
                                             <td>{{$scene->submissions->count()}}</td>
                                         </tr>
                                     @endforeach
                                 </table>
                             </div>
+                         @can('manage-question-formats')
                             <div class="links">
                                 <h2>Question formats</h2>
                                 <table border="1">
@@ -52,6 +59,8 @@
                                         <tr><td><a href="/questioncreate">Create New</a></td></tr>
                                 </table>
                             </div>
+                          @endcan
+                          @can('manage-quantifiable-observables')
                             <div class="links">
                                 <h2>Quatifiable Observables</h2>
                                 <table border="1">
@@ -64,6 +73,7 @@
                                     <tr><td><a href="/createselect">Create New</a></td></tr>
                                 </table>
                             </div>
+                           @endcan
 
                         </div>
                 </div>

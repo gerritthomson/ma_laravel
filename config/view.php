@@ -1,5 +1,5 @@
 <?php
-$result = mkdir(storage_path('framework/views'), 0777, true);
+$result = @mkdir(storage_path('framework/views'), 0777, true);
 
 return [
 

@@ -86,9 +86,9 @@
 
                 <div class="links">
                     <table border="1">
-                        <tr><th>Scene Description</th><th>Preview Scene</th><th>Answers</th><th>Submission Count</th></tr>
+                        <tr><th>Preview Scene</th></tr>
                         @foreach ($scenes as $scene)
-                            <tr><td>{{$scene->description}}</td><td><a href='/viewscene/{{$scene->id}}'>{{$scene->description}}</a></td>
+                            <tr><td><a href='/viewscene/{{$scene->id}}'>{{$scene->description}}</a></td>
                             </tr>
                         @endforeach
                     </table>
