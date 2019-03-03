@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>My Ma Practice</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
@@ -46,7 +46,7 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 2em;
             }
 
             .links > a {
@@ -83,7 +83,9 @@
                 <div class="title m-b-md">
                     Movement Analysis Practice
                 </div>
-
+                <div>
+                Preview the look and feel of the Ma Practice toolkit
+                </div>
                 <div class="links">
                     <table border="1">
                         <tr><th>Preview Scene</th></tr>

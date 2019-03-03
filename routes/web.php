@@ -13,7 +13,7 @@
 use Illuminate\Http\Request;
 
 Route::get('/', function () {
-    $scenes = \App\Scene::all();
+    $scenes = \App\Scene::take(5)->get();
     $sceneIds = [];
     foreach($scenes as $scene){
         $sceneIds[] = $scene->id;
@@ -86,3 +86,9 @@ Route::post('/questioncreate', 'QuestionController@store');
 
 Route::get('/doscene/{scene_id}', 'SubmissionController@create');
 Route::post('/doscene/{scene_id}', 'SubmissionController@store');
+
+Route::get('/videoedit/{question_id}', 'VideoController@edit');
+Route::post('/videoedit/{question_id}', 'VideoController@update');
+
+Route::get('/videocreate', 'VideoController@create');
+Route::post('/videocreate', 'VideoController@store');

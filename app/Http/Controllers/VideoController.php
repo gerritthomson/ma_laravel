@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \App\Video;
 
 class VideoController extends Controller
 {
@@ -24,6 +25,7 @@ class VideoController extends Controller
     public function create()
     {
         //
+        return view('video.create');
     }
 
     /**
@@ -35,6 +37,13 @@ class VideoController extends Controller
     public function store(Request $request)
     {
         //
+        $instance = new Video();
+        $instance->title = $request->title;
+        $instance->location = $request->location;
+        $instance->save();
+        return redirect()->action(
+            'VideoController@edit', ['id' => $instance->id]
+        );
     }
 
     /**
@@ -46,6 +55,9 @@ class VideoController extends Controller
     public function show($id)
     {
         //
+        $instance = Video::find($id);
+        return $instance;
+
     }
 
     /**
@@ -57,6 +69,8 @@ class VideoController extends Controller
     public function edit($id)
     {
         //
+        $instance = Video::find($id);
+        return view('video.edit',['video'=>$instance]);
     }
 
     /**
@@ -69,6 +83,14 @@ class VideoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $instance = Video::find($id);
+        $instance->title = $request->title;
+        $instance->location = $request->location;
+        $instance->save();
+        return redirect()->action(
+            'VideoController@edit', ['id' => $instance->id]
+        );
+
     }
 
     /**

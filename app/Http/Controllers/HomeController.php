@@ -34,7 +34,8 @@ class HomeController extends Controller
         //exit;
         $questions = \App\Question::all();
         $selects = \App\Select::All();
-        return view('home',['scenes'=>$scenes,'questions'=>$questions,'selects'=>$selects]);
+        $videos = \App\Video::All();
+        return view('home',['scenes'=>$scenes,'questions'=>$questions,'selects'=>$selects,'videos'=>$videos]);
 
 //        return view('home');
     }

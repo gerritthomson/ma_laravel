@@ -84,6 +84,21 @@
                             </div>
                            @endcan
 
+                          @can('manage-quantifiable-observables')
+                            <div class="links">
+                                <h2>Videos</h2>
+                                <table border="1">
+                                    <tr><th>Title</th><th>Location</th><th>Update</th></tr>
+                                    @foreach($videos as $video)
+                                        <tr>
+                                            <td>{{$video->title}}</td><td>{{$video->location}}</td><td><a href="/videoedit/{{$video->id}}">update</a></td>
+                                        </tr>
+                                    @endforeach
+                                    <tr><td><a href="/videocreate">Create New</a></td></tr>
+                                </table>
+                            </div>
+                           @endcan
+
                         </div>
                 </div>
             </div>
